@@ -5,13 +5,20 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./index.js"
+    "dev": "nodemon ./index.js",
+    "migration:generate": "npx knex migrate:make --knexfile ./src/config/database/knexConfig.js",
+    "migration:run": "npx knex migrate:latest --knexfile ./src/config/database/knexConfig.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "benchmark": "^2.1.4",
     "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "knex": "^3.1.0",
+    "pg": "^8.14.1"
   }
 }

@@ -1,16 +1,19 @@
+import { ClientFactory } from "../factories/clientFactory.js";
 import { HeadersMiddleware } from "../middlewares/headersMiddleware.js";
-import { transformableJsonMiddleware } from "../middlewares/transformableJsonMiddleware.js";
 
-export function middlewareChain(middlewares) {
-    
-}
+const clientController = ClientFactory.build();
 
-const transformJson = new transformableJsonMiddleware();
 const headersMiddleware = new HeadersMiddleware();
 
 export const routes = {
-  "/clientes:get": headersMiddleware.setHeaders.bind(headersMiddleware),
-  "/clientes:post": headersMiddleware.setHeaders.bind(headersMiddleware),
+  "/clientes:get": {
+    middlewares: [headersMiddleware.setHeaders],
+    controller: clientController.getAll.bind(clientController),
+  },
+  "/clientes:post": {
+    middlewares: [headersMiddleware],
+    controller: clientController,
+  },
 
   default: async (_request, _response) => {
     throw new Error("Route Not Found.");
