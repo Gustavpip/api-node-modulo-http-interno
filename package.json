@@ -15,6 +15,7 @@
   "description": "",
   "devDependencies": {
     "benchmark": "^2.1.4",
+    "climem": "^2.0.0",
     "nodemon": "^3.1.9"
   },
   "dependencies": {
